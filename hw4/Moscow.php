@@ -28,6 +28,9 @@ if(!empty($data)){
     $arrayWeather = $dataJson->list;
     
     foreach($arrayWeather as $day) {
+	 function checkData($data) { if (empty($data)) { return 'не удалось получить данные'; }
+           return $data;
+        }
 
         echo "Погода в городе". " " . $city . " " . "на" . " " . (date("d - F - Y ")) . "<br/>";
         echo "Температура: " . $day->main->temp . "<br/>";
