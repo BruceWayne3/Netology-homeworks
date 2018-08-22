@@ -21,40 +21,38 @@ $apiURL = "{$link}?q={$city},RU&type=like&units={$units}&appid={$apiKey}";
 
 $data = file_get_contents($apiURL) or exit('Не удалось получить данные');
 
-if(!empty($data)){
+
 
     $dataJson = json_decode($data) or exit('Ошибка декодирования json');
 
     $arrayWeather = $dataJson->list;
+
+    function checkData($data) { if (empty($data)) { return 'не удалось получить данные'; }
+
+        return $data;
+        }
     
     foreach($arrayWeather as $day) {
-	 function checkData($data) { if (empty($data)) { return 'не удалось получить данные'; }
-           return $data;
-        }
 
         echo "Погода в городе". " " . $city . " " . "на" . " " . (date("d - F - Y ")) . "<br/>";
-        echo "Температура: " . $day->main->temp . "<br/>";
-        echo "Скорость ветра: " . $day->wind->speed . "<br/>";
-        echo "Облачность: " . $day->weather[0]->description . "<br/>";
-        echo "Давление: " . $day->main->pressure . "<br/>";
+        echo "Температура: " . checkData($day->main->temp) . "<br/>";
+        echo "Скорость ветра: " . checkData($day->wind->speed) . "<br/>";
+        echo "Облачность: " . checkData($day->weather[0]->description) . "<br/>";
+        echo "Давление: " . checkData($day->main->pressure) . "<br/>";
         echo "<br/>";
 
         if ($day->weather[0]->description == "moderate rain") {
-             echo "<img src='https://openweathermap.org/img/w/10d.png' width=50 height=50 >" . "<br/>";
+             echo "<img src='https://openweathermap.org/img/w/10d.png'>" . "<br/>";
         }elseif ($day->weather[0]->description == "Sky is Clear") {
-             echo "<img src='https://openweathermap.org/img/w/01d.png' width=50 height=50>" . "<br/>";
+             echo "<img src='https://openweathermap.org/img/w/01d.png'>" . "<br/>";
         }elseif ($day->weather[0]->description == "light rain"){
-             echo "<img src='https://openweathermap.org/img/w/10d.png' width=50 height=50>" . "<br/>";
-        }elseif ($day->weather[0]->description == "broken clouds"){
-             echo "<img src='https://openweathermap.org/img/w/04d.png' width=50 height=50>" . "<br/>";
+             echo "<img src='https://openweathermap.org/img/w/10d.png'>" . "<br/>";
+        }elseif ($day->weather[0]->description == "few clouds"){
+             echo "<img src= 'http://openweathermap.org/img/w/04d.png'>" . "<br/>";
         }elseif ($day->weather[0]->description == "scattered clouds"){
-             echo "<img src='https://openweathermap.org/img/w/03d.png' width=50 height=50>" . "<br/>";
+             echo "<img src='https://openweathermap.org/img/w/03d.png'>" . "<br/>";
         }
     }
-}else{
-	
-    echo "Сервер не доступен";
-}
 ?>
  </body>
 </html>
