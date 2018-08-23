@@ -31,6 +31,8 @@ $data = file_get_contents($apiURL) or exit('Не удалось получить
 
         return $data;
         }
+
+
     
     foreach($arrayWeather as $day) {
 
@@ -41,16 +43,18 @@ $data = file_get_contents($apiURL) or exit('Не удалось получить
         echo "Давление: " . checkData($day->main->pressure) . "<br/>";
         echo "<br/>";
 
+        $icon = $day->weather[0]->icon;
+
         if ($day->weather[0]->description == "moderate rain") {
-             echo "<img src='https://openweathermap.org/img/w/10d.png'>" . "<br/>";
+             echo "<img src='https://openweathermap.org/img/w/$icon.png'>" . "<br/>";
         }elseif ($day->weather[0]->description == "Sky is Clear") {
-             echo "<img src='https://openweathermap.org/img/w/01d.png'>" . "<br/>";
+             echo "<img src='https://openweathermap.org/img/w/$icon.png'>" . "<br/>";
         }elseif ($day->weather[0]->description == "light rain"){
-             echo "<img src='https://openweathermap.org/img/w/10d.png'>" . "<br/>";
+             echo "<img src='https://openweathermap.org/img/w/$icon.png'>" . "<br/>";
         }elseif ($day->weather[0]->description == "few clouds"){
-             echo "<img src= 'http://openweathermap.org/img/w/04d.png'>" . "<br/>";
+             echo "<img src= 'http://openweathermap.org/img/w/$icon.png'>" . "<br/>";
         }elseif ($day->weather[0]->description == "scattered clouds"){
-             echo "<img src='https://openweathermap.org/img/w/03d.png'>" . "<br/>";
+             echo "<img src='https://openweathermap.org/img/w/$icon.png'>" . "<br/>";
         }
     }
 ?>
