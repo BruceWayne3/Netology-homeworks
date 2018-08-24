@@ -3,24 +3,23 @@ class CarClass
  {
     public $name;
     public $speed;
-    public $color = 'Black';
-    public function describe()
+    public $color;
+    public function __construct($name, $speed, $color)
     {
-        return $this->name . " has speed " . $this->speed . " km/h and color " . $this->color;
+      $this->name = $name;
+      $this->speed = $speed;
+      $this->color = $color;
     }
 }
-$car1 = new CarClass();
-$car1->name = 'Toyota';
-$car1->speed = 260;
-$car1->color;
-$car1->describe();
-echo $car1->describe() . '<br />';
-$car2 = new CarClass();
-$car2->name = 'Audi';
-$car2->speed = 220;
-$car2->color = 'white';
-$car2->describe();
-echo $car2->describe() . '<br />';
+$car1 = new CarClass('Toyota', 260, 'black');
+echo $car1->name . ' со скоростью ';
+echo $car1->speed . ' км/ч и цветом ';
+echo $car1->color . '<br/>';
+
+$car2 = new CarClass('Audi', 220, 'white');
+echo $car2->name . ' со скоростью ';
+echo $car2->speed . ' км/ч и цветом ';
+echo $car1->color;
 echo "<pre>";
 
 class TvClass
@@ -28,43 +27,50 @@ class TvClass
     public $name;
     public $color = 'Black';
     public $material = 'Plastic';
-    public function changeColor($color)
+    public function __construct($name, $color, $material)
     {
+      $this->name = $name;
       $this->color = $color;
+      $this->material = $material;
     }
 }
-$tv1 = new TvClass();
-echo $tv1->name = 'Thomson' . ' ';
-echo $tv1->color . ' made from ';
+$tv1 = new TvClass('Thomson', 'Black', 'Plastic');
+echo $tv1->name  . ' цвет ';
+echo $tv1->color . ' сделан из ';
 echo $tv1->material . '<br />';
-$tv2 = new TvClass();
-echo $tv2->name = 'SAMSUNG ';
-$tv2->changeColor('Grey');
-echo $tv2->color . ' made from ';
-echo $tv2->material . '<br />';
+
+$tv2 = new TvClass('SAMSUNG', 'Grey', 'Plastic');
+echo $tv2->name  . ' цвет ';
+echo $tv2->color . ' сделан из ';
+echo $tv1->material;
 echo "<pre>";
 
 class Pen
 {
-    public $name = 'ручка';
-    
-    public function describe()
+    public $name;
+    public $material;
+    public $ink;
+    public $color;
+
+    public function __construct($name, $material, $ink, $color)
     {
-        return $this->name . ", материал изготовления - " . $this->material . ", чернила - " . $this->ink . ", цвет корпуса - " .  $this->color;
+      $this->name = $name;
+      $this->material = $material;
+      $this->ink = $ink;
+      $this->color = $color;
     }
 }
-$pen1 = new Pen();
-$pen1->material = "пластик";
-$pen1->ink = "черные";
-$pen1->color = "синий";
-$pen1->describe();
-echo $pen1->describe() . '<br />';
-$pen2 = new Pen();
-$pen2->material = "металл";
-$pen2->ink = "синие";
-$pen2->color = "серый";
-$pen2->describe();
-echo $pen2->describe();
+$pen1 = new Pen('ручка', 'пластик', 'черные', 'синий');
+echo $pen1->name . ', материал изготовления - ';
+echo $pen1->material . ', чернила - ';
+echo $pen1->ink . ', цвет корпуса - ';
+echo $pen1->color . '<br />';
+
+$pen2 = new Pen('ручка', 'металл', 'синие', 'серый');
+echo $pen2->name . ', материал изготовления - ';
+echo $pen2->material . ', чернила - ';
+echo $pen2->ink . ', цвет корпуса - ';
+echo $pen2->color;
 echo "<pre>";
 
 class Duck
@@ -116,4 +122,3 @@ $product2 = new Product('Чашка', 'Посуда', 'Керамика');
 echo $product2->name . ' из категории ';
 echo $product2->category . ', сделана из материала ';
 echo $product2->material . '<br />';
-?>
