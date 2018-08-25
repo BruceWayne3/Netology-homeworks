@@ -16,8 +16,8 @@ abstract class Product implements InterfaceNameForProduct //суперкласс
     {
         $this->price = $price;
         $this->name = $name;
-        $this->category = $category;
         $this->model = $model;
+        $this->category = $category;
     }
     abstract public function getDescribe();
 }
@@ -246,7 +246,7 @@ class Cart
             $this->countProduct[$product->name] = $product;
         }
     }
-    public function deleteAllProduct($product) { //убрать все одинаковые продукты из корщины
+    public function deleteAllProduct($product) { //убрать все одинаковые продукты из корзины
         echo $product->name . ' удалён';
         unset($this->countProduct[$product->name]);
     }
@@ -295,4 +295,3 @@ $order->showAllProduct();
 echo '<br>';
 echo '<br>';
 echo 'На сумму: ' . $order->sum();
- ?>
